@@ -76,8 +76,6 @@ function setup() {
     bounds.push(b);
 
   }
-
-
 }
 
 function newParticle() {
@@ -88,34 +86,30 @@ function newParticle() {
 function draw() {
   if(paused) {
   } else {
-  background(0, 0, 0);
-  if (frameCount % 20 == 0) {
-    newParticle();
-  }
-  Engine.update(engine, 1000 / 30);
-  for (var i = 0; i < particles.length; i++) {
-    particles[i].show();
-    if (particles[i].isOffScreen()) {
-      World.remove(world, particles[i].body);
-      particles.splice(i, 1);
-      i--;
+    background(0, 0, 0);
+    if (frameCount % 20 == 0) {
+      newParticle();
+    }
+    Engine.update(engine, 1000 / 30);
+    for (var i = 0; i < particles.length; i++) {
+      particles[i].show();
+      if (particles[i].isOffScreen()) {
+        World.remove(world, particles[i].body);
+        particles.splice(i, 1);
+        i--;
+      }
+    }
+    for (var i = 0; i < plinkos.length; i++) {
+      plinkos[i].show();
+    }
+    for (var i = 0; i < bounds.length; i++) {
+      bounds[i].show();
     }
   }
-  for (var i = 0; i < plinkos.length; i++) {
-    plinkos[i].show();
-  }
-  for (var i = 0; i < bounds.length; i++) {
-    bounds[i].show();
-  }
-  }
-  
-function keyPressed(){ 
-  if (key ==='p'){
-  //do pause stuff
-  paused = true;
-}
 }
   
-
-
-
+function keyPressed() { 
+  if (key ==='p') {
+    paused = true;
+  }
+}
